@@ -1,38 +1,525 @@
-.App {
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&display=swap');
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: black;
+}
+
+.body {
+  background-color: #15133c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: -20px 0 50px;
+}
+
+h1 {
+  font-weight: bold;
+  font-family: 'Lobster Two', cursive;
+  margin: 0%;
+  cursor: pointer;
+  color: whitesmoke;
+}
+h2 {
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+h3{
+  color: whitesmoke;
+}
+
+label{
+  color: whitesmoke;
+}
+
+button {
+  border-radius: 20px;
+  border: 1px solid #15133c;
+  background-color: #15133c;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.button:focus {
+  outline: none;
+}
+
+button.ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+form {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input {
+  background-color: lightgrey;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.container {
+  background-color: black;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), o 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+}
+
+.form-container {
+  position: relative;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.container .right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 1;
+  z-index: 5;
+}
+
+.container .right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transfrom 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.container.right-panel-active.overlay-container {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background-repeat: no-repeat;
+  background-image: url(https://static.vecteezy.com/system/resources/previews/004/261/149/original/woman-work-at-home-office-with-cozy-modern-workplace-remote-employee-on-chair-working-online-at-desk-with-desktop-computer-and-coffee-cup-flat-illustration-free-vector.jpg);
+  background-size: cover;
+  background-position: 186px -80px;
+  color: #ffffff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active.overlay {
+  transform: translateX(50%);
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+.bttn {
+  text-align: center;
+}
+.toggle-container {
+  width: 400px;
+  margin-top: 20px;
+  text-align: center;
+  /* padding-left: 3%; */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  background-color: #15133c;
+  color: #fff;
+}
+
+.logo {
+  font-size: 30px; 
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6
+  
+}
+.logo-1 {
+  font-size: 30px; 
+    color: white;
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #15133c, 0 0 20px #15133c, 0 0 25px #15133c, 0 0 30px #15133c, 0 0 35px #15133c
+  
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  width: 75%;
+}
+
+.Home,
+.Books,
+.Schools,
+.Events {
+  text-decoration: none;
+  color: #f1eee9;
+  font-size: 20px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.mobile-menu-icon {
+  display: none;
+}
+
+@media screen and (max-width: 780px) {
+  .Log {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    left: 35px;
+  }
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links-mobile {
+    position: absolute;
+    display: block;
+    list-style: none;
+    background-color: #15133c;
+    left: 0;
+    top: 75px;
+    transition: all 0.5s ease-out;
+    width: 100%;
+  }
+
+  .Home,
+  .Books,
+  .Schools,
+  .Events {
+    color: white;
+    text-align: center;
+    padding: 32px;
+    width: 100%;
+    transition: all 0.5s ease;
+  }
+
+  .mobile-menu-icon {
+    display: block;
+    position: absolute;
+    font-size: 30px;
+    color: white;
+    background-color: indianred;
+    border: none;
+    outline: none;
+    top: 15px;
+    right: 25px;
+  }
+}
+
+.row {
+  margin-left: 20px;
+}
+
+.row_posters {
+  display: grid;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+}
+
+.row_posters::-webkit-scrollbar {
+  display: none;
+}
+
+.row_poster {
+  object-fit: contain;
+  width: 100%;
+  max-height: 100px;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+
+.row_poster:hover {
+  transform: scale(1.08);
+}
+
+.row_posterLarge {
+  max-height: 250px;
+  object-fit: contain;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.row_posterLarge:hover {
+  transform: scale(1.09);
+}
+
+.school-name {
+  text-align: center;
+  cursor: pointer;
+}
+.book-title {
+  text-align: center;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+  border: 2px solid #15133c;
+}
+
+.flex-child:first-child {
+  margin-right: 20px;
+}
+
+.postEvents {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 20px;
+}
+
+.post {
+  width: 600px;
+  height: auto;
+  max-height: 1000px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.28) 0px 3px 8px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  border: #15133c solid 5px;
+}
+
+.postHeader {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.title {
+  flex: 50%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.deletePost {
+  border: none;
+  background-color: white;
+  font-size: 20px;
+  cursor: pointer;
 }
+
+.school-interest {
+  text-align: center;
+  padding-top: 1%;
+}
+
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  margin: 0;
+  position: fixed;
+  left: -10px;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  width: 50;
+  height: 50%;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px, 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.modalTitle {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.modelContainer.body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.selected-image {
+  width: 25%;
+  height: 50%;
+  display: flex;
+}
+.selected-images {
+  width: 20vw;
+  height: 40vh;
+  display: flex;
+}
+
+.post-H{
+  color: #15133c;
+}
+
+.neonText {
+  color: #fff;
+  text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px rgb(251, 253, 253),
+      0 0 82px rgb(252, 253, 253),
+      0 0 92px rgb(250, 252, 251),
+      0 0 102px rgb(251, 252, 251),
+      0 0 151px rgb(251, 253, 253);
+}
+
+.Neon-Text {
+  font-size: 4.2rem;
+  font-family: 'Tiro Devanagari Sanskrit', serif;
+  animation: flicker 1.5s infinite alternate;     
+}
+
+/* Flickering animation */
+@keyframes flicker {
+    
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+  
+  }
+  
+  20%, 24%, 55% {        
+      text-shadow: none;
+  }    
+}
+
+
+/* Additional styling */
+  
+h2 {
+ font-size: 1.8rem;
+}
+.Neon-Container {
+  margin-top: 20vh;
+}
+
+body {
+  font-size: 18px;
+  font-family: "Helvetica Neue", sans-serif;
+  background-color: #010a01;
+}  
+
+h1, h2 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 400;
+} 
+
+
