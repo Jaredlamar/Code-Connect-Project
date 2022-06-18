@@ -8,7 +8,7 @@ function EventList({ postedEvent, currentUser }) {
   const [postedComment, setPostedComment] = useState([]);
   const [imageSelected, setImageSelected] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [eventModal, setEventModal]= useState(false)
+  const [eventModal, setEventModal] = useState(false);
 
   useEffect(() => {
     if (imageUrl) {
@@ -69,7 +69,7 @@ function EventList({ postedEvent, currentUser }) {
     formData.append("upload_preset", "de3dvas3");
 
     Axios.post(
-      "http://api.cloudinary.com/v1_1/djj0rrbaw/image/upload",
+      "https://api.cloudinary.com/v1_1/djj0rrbaw/image/upload",
       formData
     ).then((response) => {
       console.log(`response.data.url: ${response.data.url}`);
@@ -100,7 +100,10 @@ function EventList({ postedEvent, currentUser }) {
             <button onClick={uploadImage}>Upload Image</button>
           </div>
           <div className="postImage-container">
-            <img onClick={()=> {setEventModal(true)}}
+            <img
+              onClick={() => {
+                setEventModal(true);
+              }}
               className="selected-image"
               src={postedEvent.image || imageUrl}
             />
@@ -123,7 +126,12 @@ function EventList({ postedEvent, currentUser }) {
             <button onClick={(e) => handleComment(e)}>Comment</button>
           </div>
         </div>
-        {eventModal && <EventModal closeEventModal={setEventModal} postedEvent={postedEvent}/>}
+        {eventModal && (
+          <EventModal
+            closeEventModal={setEventModal}
+            postedEvent={postedEvent}
+          />
+        )}
       </div>
     </>
   );
